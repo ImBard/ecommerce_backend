@@ -2,10 +2,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ProductsService } from './products.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ProductsEntity } from './products.entity';
-import { ReviewsEntity } from './reviews.entity';
-import { CartEntity } from './carts.entity';
-import { CommentsEntity } from './comments.entity';
+import { ProductsEntity } from './entities/products.entity';
+import { ReviewsEntity } from './entities/reviews.entity';
+import { CartEntity } from './entities/carts.entity';
+import { CommentsEntity } from './entities/comments.entity';
 import { SaveProductDto } from './dto/save-product.dto';
 
 describe('ProductsService', () => {

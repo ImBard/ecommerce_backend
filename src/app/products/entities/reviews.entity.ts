@@ -2,6 +2,7 @@
 import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
 import { ProductsEntity } from './products.entity';
 import { CommentsEntity } from './comments.entity';
+import { UsersEntity } from '../../users/entities/users.entity';
 
 @Entity({ name: 'reviews' })
 export class ReviewsEntity {
@@ -28,4 +29,7 @@ export class ReviewsEntity {
 
   @OneToMany(() => CommentsEntity, (commentsEntity) => commentsEntity.reviewsEntity)
   commentsEntity: ReviewsEntity[];
+
+  @ManyToOne(() => UsersEntity, (usersEntity) => usersEntity.reviewsEntity)
+  usersEntity: UsersEntity;
 }

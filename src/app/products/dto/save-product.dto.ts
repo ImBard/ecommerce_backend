@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { IsNotEmpty } from 'class-validator';
+import { ImagesEntity } from '../entities/images.entity';
 
 export class SaveProductDto {
   @IsNotEmpty()
@@ -12,12 +13,13 @@ export class SaveProductDto {
   price: string;
   
   @IsNotEmpty()
-  sizes: Array<string>;
+  sizes: string[];
   
   @IsNotEmpty()
-  colors: Array<string>;
+  colors: string[];
   
   @IsNotEmpty()
   details: string;
 
+  imagesEntity: ImagesEntity[];
 }

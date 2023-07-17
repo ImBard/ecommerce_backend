@@ -2,6 +2,8 @@
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { CartEntity } from './carts.entity';
 import { ReviewsEntity } from './reviews.entity';
+import { OrdersItemsEntity } from '../../orders/entities/orders-items.entity';
+import { ImagesEntity } from './images.entity';
 
 @Entity({ name: 'products' })
 export class ProductsEntity {
@@ -18,10 +20,10 @@ export class ProductsEntity {
   price: string;
 
   @Column({ type: 'json' })
-  sizes: Array<string>;
+  sizes: string[];
 
   @Column({ type: 'json' })
-  colors: Array<string>;
+  colors: string[];
 
   @Column()
   details: string;
@@ -37,5 +39,11 @@ export class ProductsEntity {
   
   @OneToMany(() => ReviewsEntity, (reviewsEntity) => reviewsEntity.productsEntity)
   reviewEntity: ReviewsEntity[];
+
+  @OneToMany(() => OrdersItemsEntity, (ordersEntity) => ordersEntity.productsEntity)
+  ordersItemsEntity: OrdersItemsEntity[];
+
+  @OneToMany(() => ImagesEntity, (imagesEntity) => imagesEntity.productsEntity)
+  imagesEntity: ImagesEntity[];
   
 }

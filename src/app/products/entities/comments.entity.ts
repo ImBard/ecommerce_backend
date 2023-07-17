@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
 import { ReviewsEntity } from './reviews.entity';
+import { UsersEntity } from '../../users/entities/users.entity';
 
 @Entity({ name: 'comments' })
 export class CommentsEntity {
@@ -21,4 +22,7 @@ export class CommentsEntity {
 
   @ManyToOne(() => ReviewsEntity, (reviewsEntity) => reviewsEntity.commentsEntity)
   reviewsEntity: ReviewsEntity;
+
+  @ManyToOne(() => UsersEntity, (usersEntity) => usersEntity.commentsEntity)
+  usersEntity: UsersEntity;
 }

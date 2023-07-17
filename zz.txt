@@ -1,0 +1,5 @@
+Conversion of type 
+'{ name: string; birthDate: string; email: string; phoneNumber: string; isAdmin: boolean; urlImgPerfil: string; addressEntity: string; }' to type 'UsersEntity' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+
+Type 
+'{ name: string; birthDate: string; email: string; phoneNumber: string; isAdmin: boolean; urlImgPerfil: string; addressEntity: string; }' is missing the following properties from type 'UsersEntity': id, reviewsEntity, commentsEntityts(2352)
