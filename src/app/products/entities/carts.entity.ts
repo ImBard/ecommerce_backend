@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { ProductsEntity } from './products.entity';
+import { ProductsEntity } from "./products.entity";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: 'cart' })
 export class CartEntity {
@@ -8,8 +8,16 @@ export class CartEntity {
   id: string;
 
   @Column()
-  quantity: string;
+  quantity: number;
+
+
+  @Column()
+  size: string;
+
+  @Column({ type: 'json' })
+  color: object[];
 
   @ManyToOne(() => ProductsEntity, (productsEntity) => productsEntity.cartEntity)
   productsEntity: ProductsEntity;
+
 }

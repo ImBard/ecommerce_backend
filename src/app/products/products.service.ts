@@ -6,6 +6,7 @@ import { CartEntity } from './entities/carts.entity';
 import { SaveProductDto } from './dto/save-product.dto';
 import { SaveImagesDto } from './dto/save-images.dto';
 import { ImagesEntity } from './entities/images.entity';
+import { SaveCartDto } from './dto/save-cart.dto';
 
 interface UploadedFile {
   fieldname: string;
@@ -63,5 +64,16 @@ export class ProductsService {
       relations: ['imagesEntity', 'reviewEntity'],
     };
     return this.productsRepository.findOneOrFail(options);
+  }
+
+  async saveCart(data: SaveCartDto): Promise<CartEntity> {
+    return this.cartRepository.save(
+      this.cartRepository.create({
+        quantity: 1,
+        color: data.color,
+        size: data.size,
+        productsEntity: data.productsEntityId,
+      }),
+    );
   }
 }

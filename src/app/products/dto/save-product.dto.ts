@@ -16,7 +16,7 @@ export class SaveProductDto {
   sizes: string[];
   
   @IsNotEmpty()
-  colors: string[];
+  colors: object[];
   
   @IsNotEmpty()
   details: string;

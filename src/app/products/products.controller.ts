@@ -17,6 +17,7 @@ import path = require('path');
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { Observable, of } from 'rxjs';
 import { ProductsEntity } from './entities/products.entity';
+import { SaveCartDto } from './dto/save-cart.dto';
 
 export const storage = {
   storage: diskStorage({
@@ -59,5 +60,10 @@ export class ProductsController {
       throw new NotFoundException('Produto não encontrado');
     }
     return product;
+  }
+
+  @Post('/cart')
+  async storeCart(@Body() body: SaveCartDto) {
+    return this.productsService.saveCart(body);
   }
 }

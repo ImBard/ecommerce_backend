@@ -23,7 +23,7 @@ export class ProductsEntity {
   sizes: string[];
 
   @Column({ type: 'json' })
-  colors: string[];
+  colors: object[];
 
   @Column()
   details: string;
