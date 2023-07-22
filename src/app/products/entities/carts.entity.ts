@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+import { UsersEntity } from "src/app/users/entities/users.entity";
 import { ProductsEntity } from "./products.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
@@ -19,5 +20,8 @@ export class CartEntity {
 
   @ManyToOne(() => ProductsEntity, (productsEntity) => productsEntity.cartEntity)
   productsEntity: ProductsEntity;
+
+  @ManyToOne(() => UsersEntity, (usersEntity) => usersEntity.cartEntity)
+  userEntity: UsersEntity;
 
 }

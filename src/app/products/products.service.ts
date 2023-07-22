@@ -7,6 +7,7 @@ import { SaveProductDto } from './dto/save-product.dto';
 import { SaveImagesDto } from './dto/save-images.dto';
 import { ImagesEntity } from './entities/images.entity';
 import { SaveCartDto } from './dto/save-cart.dto';
+import { SaveUserDto } from '../users/dto/save-user.dto';
 
 interface UploadedFile {
   fieldname: string;
@@ -28,7 +29,7 @@ export class ProductsService {
     private readonly cartRepository: Repository<CartEntity>,
     @InjectRepository(ImagesEntity)
     private readonly imagesRepository: Repository<ImagesEntity>,
-  ) {}
+  ) { }
 
   async save(
     data: SaveProductDto,
@@ -73,7 +74,17 @@ export class ProductsService {
         color: data.color,
         size: data.size,
         productsEntity: data.productsEntityId,
+        userEntity: data.userEntity,
       }),
     );
+  }
+
+  async getCart(id: object): Promise<CartEntity[]> {
+    return this.cartRepository.find({
+      where: {
+        userEntity: id, // Utilize a relação diretamente para acessar a coluna 'id' do usuário
+      },
+      relations: ['productsEntity', 'productsEntity.imagesEntity'],
+    });
   }
 }

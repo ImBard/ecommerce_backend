@@ -52,7 +52,7 @@ export class ProductsController {
     return this.productsService.findAll();
   }
 
-  @Get(':code')
+  @Get('/code/:code')
   async findOneByCode(@Param('code') code: string) {
     const product = await this.productsService.findOneByCode(code);
     if (!product) {
@@ -65,5 +65,10 @@ export class ProductsController {
   @Post('/cart')
   async storeCart(@Body() body: SaveCartDto) {
     return this.productsService.saveCart(body);
+  }
+
+  @Get('/my-cart')
+  async findCart(@Body() body: object) {
+    return await this.productsService.getCart(body);
   }
 }

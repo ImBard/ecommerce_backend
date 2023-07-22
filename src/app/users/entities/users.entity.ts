@@ -4,6 +4,7 @@ import { AddressEntity } from "./address.entity";
 import { ReviewsEntity } from "../../products/entities/reviews.entity";
 import { CommentsEntity } from "../../products/entities/comments.entity";
 import { OrdersEntity } from "../../orders/entities/orders.entity";
+import { CartEntity } from "../../products/entities/carts.entity";
 
 @Entity({ name: 'users' })
 export class UsersEntity {
@@ -40,5 +41,8 @@ export class UsersEntity {
 
   @OneToMany(() => OrdersEntity, (ordersEntity) => ordersEntity.usersEntity)
   ordersEntity: OrdersEntity[];
+
+  @OneToMany(() => CartEntity, (cartEntity) => cartEntity.userEntity)
+  cartEntity: CartEntity[];
 
 }
