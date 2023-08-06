@@ -79,12 +79,14 @@ export class ProductsService {
     );
   }
 
-  async getCart(id: object): Promise<CartEntity[]> {
-    return this.cartRepository.find({
-      where: {
-        userEntity: id, // Utilize a relação diretamente para acessar a coluna 'id' do usuário
-      },
-      relations: ['productsEntity', 'productsEntity.imagesEntity'],
-    });
+  async getCart(id: string): Promise<CartEntity[]> {
+    const cart = await this.cartRepository
+      .createQueryBuilder('cart')
+      .innerJoinAndSelect('cart.products', 'products')
+      .innerJoinAndSelect('cart.images', 'images')
+      .select(['cart.size', 'cart.quantity', 'cart.color', 'product', 'images.path', 'cart.userEntityId'])
+      .where('userEntityId = :id', { id: id })
+      .getMany();
+    return cart;
   }
 }

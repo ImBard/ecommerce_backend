@@ -35,7 +35,6 @@ export class OrdersService {
     });
 
     const savedOrderItems = await this.ordersItemsRepository.save(orderItems);
-
     return savedOrder;
   }
 }
